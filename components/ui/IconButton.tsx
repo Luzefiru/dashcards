@@ -9,7 +9,7 @@ import {
 
 interface IconButtonProps extends PressableProps {
   children: ReactNode;
-  style?: ViewStyle;
+  style?: ViewStyle | ViewStyle[];
 }
 
 export function IconButton({
@@ -74,7 +74,6 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
     borderRadius: 999,
     elevation: 1,
   },

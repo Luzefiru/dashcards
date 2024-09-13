@@ -5,15 +5,22 @@ import type { Card } from '@/types/Card';
 interface Props {
   cards: Card[];
   currentCardIndex: number;
+  isShowingBack: boolean;
 }
 
-export function DeckCardArea({ cards, currentCardIndex }: Props) {
+export function DeckCardArea({
+  cards,
+  currentCardIndex,
+  isShowingBack,
+}: Props) {
   const currentCard = cards[currentCardIndex];
 
   return (
     <View>
       <View style={styles.cardContainer}>
-        <Text style={styles.cardText}>{currentCard.front}</Text>
+        <Text style={styles.cardText}>
+          {isShowingBack ? currentCard.back : currentCard.front}
+        </Text>
       </View>
       <View style={styles.curvedBackground} />
     </View>
@@ -23,7 +30,7 @@ export function DeckCardArea({ cards, currentCardIndex }: Props) {
 const styles = StyleSheet.create({
   cardContainer: {
     paddingHorizontal: 32,
-    paddingVertical: 128,
+    height: 288,
     marginHorizontal: 32,
     borderRadius: 16,
     backgroundColor: Colors.foreground,
