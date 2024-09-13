@@ -1,5 +1,6 @@
-import { Stack } from 'expo-router';
+import { Stack, Link } from 'expo-router';
 import { Logo } from '@/components/ui/Logo';
+import { MenuButton } from '@/components/ui/MenuButton';
 
 export default function RootLayout() {
   return (
@@ -15,7 +16,24 @@ export default function RootLayout() {
         },
       }}
     >
-      <Stack.Screen name="index" options={{ headerTitle: () => <Logo /> }} />
+      <Stack.Screen
+        name="index"
+        options={{
+          headerTitle: () => <Logo />,
+          headerRight: () => (
+            <Link href="/decks">
+              <MenuButton />
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="decks"
+        options={{
+          presentation: 'modal',
+          headerTitle: 'Decks',
+        }}
+      />
     </Stack>
   );
 }

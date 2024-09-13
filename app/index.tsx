@@ -17,22 +17,10 @@ export default function Index() {
     setIsShowingBack(!isShowingBack);
   };
 
-  const handlePrevCard = () => {
-    if (currentCardIndex === 0) {
-      setCurrentCardIndex(0);
-    } else {
-      setCurrentCardIndex((prev) => prev - 1);
-    }
-    setIsShowingBack(false);
-  };
+  const handleAutoplay = () => {};
 
-  const handleNextCard = () => {
-    if (currentCardIndex === deck.cards.length - 1) {
-      setCurrentCardIndex(0);
-    } else {
-      setCurrentCardIndex((prev) => prev + 1);
-    }
-    setIsShowingBack(false);
+  const handleShuffle = () => {
+    setCurrentCardIndex(Math.floor(Math.random() * deck.cards.length));
   };
 
   return (
@@ -42,12 +30,13 @@ export default function Index() {
         cards={deck.cards}
         currentCardIndex={currentCardIndex}
         isShowingBack={isShowingBack}
+        handleFlip={handleFlip}
       />
       <DeckControls
         handleFlip={handleFlip}
-        handlePrevCard={handlePrevCard}
-        handleNextCard={handleNextCard}
         isShowingBack={isShowingBack}
+        handleAutoplay={handleAutoplay}
+        handleShuffle={handleShuffle}
       />
     </SafeAreaView>
   );
