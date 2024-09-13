@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   mutedText: {
-    fontWeight: "300",
+    color: "#7B7980",
   },
 });
