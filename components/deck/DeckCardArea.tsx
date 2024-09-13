@@ -1,50 +1,140 @@
-import { View, StyleSheet, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, StyleSheet, Text, Dimensions, Pressable } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  interpolate,
+} from 'react-native-reanimated';
+import Carousel from 'react-native-reanimated-carousel';
 import { Colors } from '@/constants/Colors';
 import type { Card } from '@/types/Card';
+
+const screenWidth = Dimensions.get('window').width;
+const cardWidth = screenWidth - 64;
 
 interface Props {
   cards: Card[];
   currentCardIndex: number;
+  isShowingBack: boolean;
+  handleFlip: () => void;
 }
 
-export function DeckCardArea({ cards, currentCardIndex }: Props) {
-  const currentCard = cards[currentCardIndex];
+export function DeckCardArea({
+  cards,
+  currentCardIndex,
+  isShowingBack,
+  handleFlip,
+}: Props) {
+  const flip = useSharedValue(0);
+
+  useEffect(() => {
+    flip.value = withTiming(isShowingBack ? 1 : 0, { duration: 500 });
+  }, [isShowingBack]);
+
+  const frontAnimatedStyle = useAnimatedStyle(() => {
+    const rotateY = interpolate(flip.value, [0, 1], [0, 180]);
+    return {
+      transform: [{ rotateY: `${rotateY}deg` }],
+      opacity: flip.value < 0.5 ? 1 : 0,
+    };
+  });
+
+  const backAnimatedStyle = useAnimatedStyle(() => {
+    const rotateY = interpolate(flip.value, [0, 1], [180, 360]);
+    return {
+      transform: [{ rotateY: `${rotateY}deg` }],
+      opacity: flip.value > 0.5 ? 1 : 0,
+    };
+  });
 
   return (
-    <View>
-      <View style={styles.cardContainer}>
-        <Text style={styles.cardText}>{currentCard.front}</Text>
-      </View>
+    <View style={styles.container}>
+      <Carousel
+        style={{ overflow: 'visible' }}
+        loop
+        width={screenWidth}
+        height={screenWidth * 2}
+        data={cards}
+        scrollAnimationDuration={500}
+        defaultIndex={currentCardIndex}
+        renderItem={({ index }) => (
+          <CardItem
+            card={cards[index]}
+            frontAnimatedStyle={frontAnimatedStyle}
+            backAnimatedStyle={backAnimatedStyle}
+            handleFlip={handleFlip}
+          />
+        )}
+      />
+
       <View style={styles.curvedBackground} />
     </View>
   );
 }
 
+const CardItem = ({
+  card,
+  frontAnimatedStyle,
+  backAnimatedStyle,
+  handleFlip,
+}: {
+  card: Card;
+  frontAnimatedStyle: Animated.AnimateStyle<any>;
+  backAnimatedStyle: Animated.AnimateStyle<any>;
+  handleFlip: () => void;
+}) => (
+  <Pressable onPress={handleFlip}>
+    {/* Front Side */}
+    <Animated.View
+      style={[styles.cardSide, frontAnimatedStyle, styles.cardContainer]}
+    >
+      <Text style={styles.cardText}>{card.front}</Text>
+    </Animated.View>
+
+    {/* Back Side */}
+    <Animated.View
+      style={[
+        styles.cardSide,
+        styles.cardBack,
+        backAnimatedStyle,
+        styles.cardContainer,
+      ]}
+    >
+      <Text style={styles.cardText}>{card.back}</Text>
+    </Animated.View>
+  </Pressable>
+);
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   cardContainer: {
     paddingHorizontal: 32,
-    paddingVertical: 128,
+    width: cardWidth,
+    height: 288,
     marginHorizontal: 32,
     borderRadius: 16,
     backgroundColor: Colors.foreground,
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#1C133C',
-    shadowOffset: {
-      height: 4,
-      width: 0,
-    },
-    shadowOpacity: 10,
-    shadowRadius: 12,
-    elevation: 3,
   },
-
+  cardSide: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backfaceVisibility: 'hidden',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+  },
+  cardBack: {
+    backgroundColor: Colors.foreground,
+  },
   cardText: {
     fontSize: 20,
     textAlign: 'center',
   },
-
   curvedBackground: {
     backgroundColor: Colors.primary,
     borderBottomLeftRadius: 80,
