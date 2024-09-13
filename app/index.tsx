@@ -12,13 +12,18 @@ export default function Index() {
   const deck = MockData;
   const [isShowingBack, setIsShowingBack] = useState(false);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+  const [isOnAutoplay, setIsOnAutoplay] = useState(false);
+  const [secondsInTimer, setSecondsInTimer] = useState(0);
 
   const handleFlip = () => {
     setIsShowingBack(!isShowingBack);
   };
 
-  const handleAutoplay = () => {};
+  const handleAutoplay = () => {
+    setIsOnAutoplay(!isOnAutoplay);
+
+    setSecondsInTimer(8);
+  };
 
   const handleShuffle = () => {
     setCurrentCardIndex(Math.floor(Math.random() * deck.cards.length));
@@ -38,6 +43,9 @@ export default function Index() {
         isShowingBack={isShowingBack}
         handleAutoplay={handleAutoplay}
         handleShuffle={handleShuffle}
+        isOnAutoplay={isOnAutoplay}
+        secondsInTimer={secondsInTimer}
+        setSecondsInTimer={setSecondsInTimer}
       />
     </SafeAreaView>
   );

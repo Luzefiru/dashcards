@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-const Timer = () => {
-  const [seconds, setSeconds] = useState(8);
-
+interface Props {
+  setSecondsInTimer: React.Dispatch<React.SetStateAction<number>>;
+  secondsInTimer: number;
+}
+const Timer = ({ secondsInTimer, setSecondsInTimer }: Props) => {
   useEffect(() => {
-    if (seconds > 0) {
+    if (secondsInTimer > 0) {
       const timer = setInterval(() => {
-        setSeconds((prev) => prev - 1);
+        // @ts-ignore
+        setSecondsInTimer((prev) => prev - 1);
       }, 1000);
 
       // Clean up the interval when the component unmounts or seconds reach 0
       return () => clearInterval(timer);
     }
-  }, [seconds]);
+  }, [secondsInTimer]);
 
   return (
     <View>
       <Text style={styles.timer}>
-        {seconds > 0 ? <Text>00:0{seconds}</Text> : <Text>00:00</Text>}
+        {secondsInTimer > 0 ? (
+          <Text>00:0{secondsInTimer}</Text>
+        ) : (
+          <Text>00:00</Text>
+        )}
       </Text>
     </View>
   );
@@ -33,6 +40,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     position: "absolute",
     top: -25,
-    left: "30%",
+    left: "28%",
   },
 });

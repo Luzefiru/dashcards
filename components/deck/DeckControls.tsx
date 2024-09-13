@@ -10,7 +10,10 @@ interface Props {
   handleFlip: () => void;
   handleAutoplay: () => void;
   handleShuffle: () => void;
+  setSecondsInTimer: React.Dispatch<React.SetStateAction<number>>;
   isShowingBack: boolean;
+  isOnAutoplay: boolean;
+  secondsInTimer: number;
 }
 
 export function DeckControls({
@@ -18,16 +21,28 @@ export function DeckControls({
   handleAutoplay,
   handleShuffle,
   isShowingBack,
+  isOnAutoplay,
+  secondsInTimer,
+  setSecondsInTimer,
 }: Props) {
   return (
     <View style={styles.container}>
       <View>
-        <Timer />
+        {isOnAutoplay && (
+          <Timer
+            secondsInTimer={secondsInTimer}
+            setSecondsInTimer={setSecondsInTimer}
+          />
+        )}
         <IconButton
-          style={[styles.button, styles.relative]}
+          style={isOnAutoplay ? styles.activePlayButton : styles.button}
           onPress={handleAutoplay}
         >
-          <Entypo name="controller-play" size={36} color={Colors.foreground} />
+          <Entypo
+            name={isOnAutoplay ? "controller-paus" : "controller-play"}
+            size={36}
+            color={isOnAutoplay ? Colors.primary : Colors.foreground}
+          />
         </IconButton>
       </View>
       <IconButton onPress={handleFlip} style={styles.button}>
@@ -60,7 +75,10 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     padding: 20,
   },
-  relative: {
+  activePlayButton: {
     position: "relative",
+    backgroundColor: Colors.foreground,
+    borderRadius: 999,
+    padding: 20,
   },
 });
