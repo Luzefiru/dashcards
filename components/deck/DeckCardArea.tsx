@@ -9,6 +9,7 @@ import Animated, {
 import Carousel from "react-native-reanimated-carousel";
 import { Colors } from "@/constants/Colors";
 import type { Card } from "@/types/Card";
+import { ProgressBar } from "./ProgressBar";
 
 const screenWidth = Dimensions.get("window").width;
 const cardWidth = screenWidth - 64;
@@ -66,6 +67,11 @@ export function DeckCardArea({
             handleFlip={handleFlip}
           />
         )}
+      />
+      <ProgressBar
+        cards={cards}
+        currentCardIndex={currentCardIndex}
+        cardWidth={cardWidth}
       />
       <View style={styles.curvedBackground} />
     </View>
@@ -143,5 +149,13 @@ const styles = StyleSheet.create({
     top: 0,
     width: "100%",
     zIndex: -10,
+  },
+  cardWithProgressBarContainer: {
+    display: "flex",
+  },
+  progressBar: {
+    position: "absolute",
+    bottom: "25%",
+    left: "50%",
   },
 });

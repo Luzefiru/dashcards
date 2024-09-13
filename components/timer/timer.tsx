@@ -7,12 +7,12 @@ interface Props {
   moveToNextCard: () => void;
   handleFlip: () => void;
 }
-const Timer = ({
+export function Timer({
   secondsInTimer,
   setSecondsInTimer,
   moveToNextCard,
   handleFlip,
-}: Props) => {
+}: Props) {
   useEffect(() => {
     if (secondsInTimer > 0) {
       const timer = setInterval(() => {
@@ -45,7 +45,7 @@ const Timer = ({
       </Text>
     </View>
   );
-};
+}
 
 export default Timer;
 
