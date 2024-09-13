@@ -13,7 +13,15 @@ export default function Index() {
   const [isShowingBack, setIsShowingBack] = useState(false);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isOnAutoplay, setIsOnAutoplay] = useState(false);
-  const [secondsInTimer, setSecondsInTimer] = useState(0);
+  const [secondsInTimer, setSecondsInTimer] = useState(-1);
+
+  const moveToNextCard = () => {
+    if (currentCardIndex < deck.cards.length - 1) {
+      setCurrentCardIndex((prev) => prev + 1);
+    } else {
+      setCurrentCardIndex(0);
+    }
+  };
 
   const handleFlip = () => {
     setIsShowingBack(!isShowingBack);
@@ -22,11 +30,16 @@ export default function Index() {
   const handleAutoplay = () => {
     setIsOnAutoplay(!isOnAutoplay);
 
-    setSecondsInTimer(8);
+    if (!isOnAutoplay) {
+      setSecondsInTimer(8);
+    } else {
+      setSecondsInTimer(-1);
+    }
   };
 
   const handleShuffle = () => {
-    setCurrentCardIndex(Math.floor(Math.random() * deck.cards.length));
+    // setCurrentCardIndex(Math.floor(Math.random() * deck.cards.length));
+    moveToNextCard();
   };
 
   return (
@@ -43,6 +56,7 @@ export default function Index() {
         isShowingBack={isShowingBack}
         handleAutoplay={handleAutoplay}
         handleShuffle={handleShuffle}
+        moveToNextCard={moveToNextCard}
         isOnAutoplay={isOnAutoplay}
         secondsInTimer={secondsInTimer}
         setSecondsInTimer={setSecondsInTimer}

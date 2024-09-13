@@ -10,6 +10,7 @@ interface Props {
   handleFlip: () => void;
   handleAutoplay: () => void;
   handleShuffle: () => void;
+  moveToNextCard: () => void;
   setSecondsInTimer: React.Dispatch<React.SetStateAction<number>>;
   isShowingBack: boolean;
   isOnAutoplay: boolean;
@@ -20,6 +21,7 @@ export function DeckControls({
   handleFlip,
   handleAutoplay,
   handleShuffle,
+  moveToNextCard,
   isShowingBack,
   isOnAutoplay,
   secondsInTimer,
@@ -32,8 +34,11 @@ export function DeckControls({
           <Timer
             secondsInTimer={secondsInTimer}
             setSecondsInTimer={setSecondsInTimer}
+            moveToNextCard={moveToNextCard}
+            handleFlip={handleFlip}
           />
         )}
+
         <IconButton
           style={isOnAutoplay ? styles.activePlayButton : styles.button}
           onPress={handleAutoplay}
