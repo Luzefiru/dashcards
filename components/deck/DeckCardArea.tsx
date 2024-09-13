@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
-import { View, StyleSheet, Text, Dimensions, Pressable } from 'react-native';
+import React, { useEffect } from "react";
+import { View, StyleSheet, Text, Dimensions, Pressable } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
   interpolate,
-} from 'react-native-reanimated';
-import Carousel from 'react-native-reanimated-carousel';
-import { Colors } from '@/constants/Colors';
-import type { Card } from '@/types/Card';
+} from "react-native-reanimated";
+import Carousel from "react-native-reanimated-carousel";
+import { Colors } from "@/constants/Colors";
+import type { Card } from "@/types/Card";
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get("window").width;
 const cardWidth = screenWidth - 64;
 
 interface Props {
@@ -51,7 +51,7 @@ export function DeckCardArea({
   return (
     <View style={styles.container}>
       <Carousel
-        style={{ overflow: 'visible' }}
+        style={{ overflow: "visible" }}
         loop
         width={screenWidth}
         height={screenWidth * 2}
@@ -67,7 +67,6 @@ export function DeckCardArea({
           />
         )}
       />
-
       <View style={styles.curvedBackground} />
     </View>
   );
@@ -117,32 +116,32 @@ const styles = StyleSheet.create({
     marginHorizontal: 32,
     borderRadius: 16,
     backgroundColor: Colors.foreground,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardSide: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backfaceVisibility: 'hidden',
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
+    justifyContent: "center",
+    alignItems: "center",
+    backfaceVisibility: "hidden",
+    position: "absolute",
+    width: "100%",
+    height: "100%",
   },
   cardBack: {
     backgroundColor: Colors.foreground,
   },
   cardText: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   curvedBackground: {
     backgroundColor: Colors.primary,
     borderBottomLeftRadius: 80,
     borderBottomRightRadius: 80,
     height: 160,
-    position: 'absolute',
+    position: "absolute",
     top: 0,
-    width: '100%',
+    width: "100%",
     zIndex: -10,
   },
 });
