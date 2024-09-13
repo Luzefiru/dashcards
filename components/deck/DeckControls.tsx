@@ -1,5 +1,5 @@
 import React from 'react';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import Entypo from '@expo/vector-icons/Entypo';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Colors } from '@/constants/Colors';
 import { View, StyleSheet } from 'react-native';
@@ -7,21 +7,21 @@ import { IconButton } from '../ui/IconButton';
 
 interface Props {
   handleFlip: () => void;
-  handlePrevCard: () => void;
-  handleNextCard: () => void;
+  handleAutoplay: () => void;
+  handleShuffle: () => void;
   isShowingBack: boolean;
 }
 
 export function DeckControls({
   handleFlip,
-  handlePrevCard,
-  handleNextCard,
+  handleAutoplay,
+  handleShuffle,
   isShowingBack,
 }: Props) {
   return (
     <View style={styles.container}>
-      <IconButton style={styles.button} onPress={handlePrevCard}>
-        <MaterialIcons name="arrow-back" size={36} color={Colors.foreground} />
+      <IconButton style={styles.button} onPress={handleAutoplay}>
+        <Entypo name="controller-play" size={36} color={Colors.foreground} />
       </IconButton>
       <IconButton onPress={handleFlip} style={styles.button}>
         <MaterialCommunityIcons
@@ -30,12 +30,8 @@ export function DeckControls({
           color={Colors.foreground}
         />
       </IconButton>
-      <IconButton onPress={handleNextCard} style={styles.button}>
-        <MaterialIcons
-          name="arrow-forward"
-          size={36}
-          color={Colors.foreground}
-        />
+      <IconButton onPress={handleShuffle} style={styles.button}>
+        <Entypo name="shuffle" size={36} color={Colors.foreground} />
       </IconButton>
     </View>
   );
