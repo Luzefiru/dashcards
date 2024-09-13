@@ -10,7 +10,7 @@ interface Theme {
 }
 
 export const Colors: Theme = {
-  background: '#F5F2FF',
+  background: '#D5CFE8',
   foreground: '#FFFFFF',
   primary: '#6342D9',
   accent: '#45FF5B',
