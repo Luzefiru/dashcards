@@ -38,8 +38,7 @@ export default function Index() {
   };
 
   const handleShuffle = () => {
-    // setCurrentCardIndex(Math.floor(Math.random() * deck.cards.length));
-    moveToNextCard();
+    setCurrentCardIndex(Math.floor(Math.random() * deck.cards.length));
   };
 
   return (
@@ -50,6 +49,7 @@ export default function Index() {
         currentCardIndex={currentCardIndex}
         isShowingBack={isShowingBack}
         handleFlip={handleFlip}
+        setCurrentCardIndex={setCurrentCardIndex}
       />
       <DeckControls
         handleFlip={handleFlip}

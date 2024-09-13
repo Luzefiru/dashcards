@@ -19,6 +19,7 @@ interface Props {
   currentCardIndex: number;
   isShowingBack: boolean;
   handleFlip: () => void;
+  setCurrentCardIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export function DeckCardArea({
@@ -26,6 +27,7 @@ export function DeckCardArea({
   currentCardIndex,
   isShowingBack,
   handleFlip,
+  setCurrentCardIndex,
 }: Props) {
   const flip = useSharedValue(0);
 
@@ -59,6 +61,7 @@ export function DeckCardArea({
         data={cards}
         scrollAnimationDuration={500}
         defaultIndex={currentCardIndex}
+        onSnapToItem={(index) => setCurrentCardIndex(index)}
         renderItem={({ index }) => (
           <CardItem
             card={cards[index]}
