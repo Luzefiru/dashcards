@@ -2,7 +2,7 @@ import { SafeAreaView, FlatList, Text, StyleSheet } from 'react-native';
 import { DeckListItem } from '@/components/decks/DeckListItem';
 import { useDeckContext } from '@/providers/DeckContextProvider';
 
-export default function Credits() {
+export default function Decks() {
   const { allDecks } = useDeckContext();
 
   if (!allDecks) {
