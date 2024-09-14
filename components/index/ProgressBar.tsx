@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
 import * as Progress from 'react-native-progress';
+import { View, StyleSheet, Text } from 'react-native';
+import { Colors } from '@/constants/Colors';
 import type { Card } from '@/types/Card';
 
 interface Props {
@@ -43,6 +44,6 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
   mutedText: {
-    color: '#7B7980'
+    color: Colors.textMutedForeground
   }
 });
