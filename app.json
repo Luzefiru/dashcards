@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#6342D9"
-      }
+      },
+      "package": "dashcards.app"
     },
     "web": {
       "bundler": "metro",
@@ -29,6 +30,11 @@
     "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bd29b0a9-6a82-4c97-8f68-d96a7c4120c3"
+      }
     }
   }
 }
