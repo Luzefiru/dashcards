@@ -1,6 +1,7 @@
 import React, { useContext, createContext, useState } from 'react';
 import type { Deck } from '@/types/Deck';
 import { AllDecks } from '@/constants/AllDecks';
+import Toast from 'react-native-toast-message';
 
 interface DeckContext {
   allDecks: Deck[] | null;
@@ -26,6 +27,12 @@ export function DeckContextProvider({
 
     if (deckToSelect) {
       setSelectedDeck(deckToSelect);
+
+      Toast.show({
+        type: 'success',
+        position: 'bottom',
+        text1: `Successfully selected deck "${title}"!`
+      });
     }
   }
 

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { SafeAreaView } from 'react-native';
-import { DeckHeader } from '@/components/deck/DeckHeader';
-import { DeckCardArea } from '@/components/deck/DeckCardArea';
-import { DeckControls } from '@/components/deck/DeckControls';
+import { DeckHeader } from '@/components/index/DeckHeader';
+import { DeckCardArea } from '@/components/index/DeckCardArea';
+import { DeckControls } from '@/components/index/DeckControls';
 import { useDeckContext } from '@/providers/DeckContextProvider';
 import { Loading } from '@/components/ui/Loading';
 

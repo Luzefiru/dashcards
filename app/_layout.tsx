@@ -2,6 +2,7 @@ import { Stack, Link } from 'expo-router';
 import { Logo } from '@/components/ui/Logo';
 import { MenuButton } from '@/components/ui/MenuButton';
 import { DeckContextProvider } from '@/providers/DeckContextProvider';
+import Toast from 'react-native-toast-message';
 
 export default function RootLayout() {
   return (
@@ -37,6 +38,7 @@ export default function RootLayout() {
           }}
         />
       </Stack>
+      <Toast />
     </DeckContextProvider>
   );
 }
