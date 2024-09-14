@@ -1,7 +1,7 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import * as Progress from "react-native-progress";
-import type { Card } from "@/types/Card";
+import React from 'react';
+import { View, StyleSheet, Text } from 'react-native';
+import * as Progress from 'react-native-progress';
+import type { Card } from '@/types/Card';
 
 interface Props {
     cards: Card[];
@@ -21,7 +21,7 @@ export function ProgressBar({ cards, currentCardIndex, cardWidth }: Props) {
                 borderWidth={0}
             />
             <Text style={styles.cardNumber}>
-                {currentCardIndex + 1}/{cards.length}{" "}
+                {currentCardIndex + 1}/{cards.length}{' '}
                 <Text style={styles.mutedText}>Cards</Text>
             </Text>
         </View>
@@ -30,19 +30,19 @@ export function ProgressBar({ cards, currentCardIndex, cardWidth }: Props) {
 
 const styles = StyleSheet.create({
     progressBar: {
-        position: "absolute",
-        bottom: "25%",
-        left: "10%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-end",
+        position: 'absolute',
+        bottom: '25%',
+        left: '10%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end',
         gap: 5
     },
     cardNumber: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
         fontSize: 12
     },
     mutedText: {
-        color: "#7B7980"
+        color: '#7B7980'
     }
 });
