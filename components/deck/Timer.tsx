@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 interface Props {
@@ -16,7 +16,6 @@ export function Timer({
   useEffect(() => {
     if (secondsInTimer > 0) {
       const timer = setInterval(() => {
-        // @ts-ignore
         if (secondsInTimer === 4) {
           handleFlip();
         }
@@ -37,8 +36,8 @@ export function Timer({
   return (
     <View>
       <Text style={styles.timer}>
-        {secondsInTimer > 4 ? (
-          <Text>00:0{secondsInTimer - 4}</Text>
+        {secondsInTimer > 3 ? (
+          <Text>00:0{secondsInTimer - 3}</Text>
         ) : (
           <Text>00:00</Text>
         )}

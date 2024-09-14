@@ -4,7 +4,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Colors } from "@/constants/Colors";
 import { View, StyleSheet, Text } from "react-native";
 import { IconButton } from "../ui/IconButton";
-import Timer from "../timer/timer";
+import Timer from "./Timer";
 
 interface Props {
   handleFlip: () => void;
