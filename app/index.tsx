@@ -9,35 +9,58 @@ import { DeckControls } from '@/components/deck/DeckControls';
 import { MockData } from '@/constants/MockData';
 
 export default function Index() {
-  const deck = MockData;
-  const [isShowingBack, setIsShowingBack] = useState(false);
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+    const deck = MockData;
+    const [isShowingBack, setIsShowingBack] = useState(false);
+    const [currentCardIndex, setCurrentCardIndex] = useState(0);
+    const [isOnAutoplay, setIsOnAutoplay] = useState(false);
+    const [secondsInTimer, setSecondsInTimer] = useState(-1);
 
-  const handleFlip = () => {
-    setIsShowingBack(!isShowingBack);
-  };
+    const moveToNextCard = () => {
+        if (currentCardIndex < deck.cards.length - 1) {
+            setCurrentCardIndex((prev) => prev + 1);
+        } else {
+            setCurrentCardIndex(0);
+        }
+    };
 
-  const handleAutoplay = () => {};
+    const handleFlip = () => {
+        setIsShowingBack(!isShowingBack);
+    };
 
-  const handleShuffle = () => {
-    setCurrentCardIndex(Math.floor(Math.random() * deck.cards.length));
-  };
+    const handleAutoplay = () => {
+        setIsOnAutoplay(!isOnAutoplay);
 
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <DeckHeader title={deck.title} subtitle={deck.subtitle} />
-      <DeckCardArea
-        cards={deck.cards}
-        currentCardIndex={currentCardIndex}
-        isShowingBack={isShowingBack}
-        handleFlip={handleFlip}
-      />
-      <DeckControls
-        handleFlip={handleFlip}
-        isShowingBack={isShowingBack}
-        handleAutoplay={handleAutoplay}
-        handleShuffle={handleShuffle}
-      />
-    </SafeAreaView>
-  );
+        if (!isOnAutoplay) {
+            setSecondsInTimer(8);
+        } else {
+            setSecondsInTimer(-1);
+        }
+    };
+
+    const handleShuffle = () => {
+        setCurrentCardIndex(Math.floor(Math.random() * deck.cards.length));
+    };
+
+    return (
+        <SafeAreaView style={{ flex: 1 }}>
+            <DeckHeader title={deck.title} subtitle={deck.subtitle} />
+            <DeckCardArea
+                cards={deck.cards}
+                currentCardIndex={currentCardIndex}
+                isShowingBack={isShowingBack}
+                handleFlip={handleFlip}
+                setCurrentCardIndex={setCurrentCardIndex}
+            />
+            <DeckControls
+                handleFlip={handleFlip}
+                isShowingBack={isShowingBack}
+                handleAutoplay={handleAutoplay}
+                handleShuffle={handleShuffle}
+                moveToNextCard={moveToNextCard}
+                isOnAutoplay={isOnAutoplay}
+                secondsInTimer={secondsInTimer}
+                setSecondsInTimer={setSecondsInTimer}
+            />
+        </SafeAreaView>
+    );
 }
