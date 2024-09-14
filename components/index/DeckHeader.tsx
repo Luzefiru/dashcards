@@ -1,16 +1,16 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { Colors } from '@/constants/Colors';
+import { useDeckContext } from '@/providers/DeckContextProvider';
 
-interface Props {
-  title: string;
-  subtitle: string;
-}
+export function DeckHeader() {
+  const { selectedDeck } = useDeckContext();
 
-export function DeckHeader({ title, subtitle }: Props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.subtitle}>{subtitle}</Text>
+      <Text style={styles.title}>{selectedDeck?.title ?? 'Your Deck'}</Text>
+      <Text style={styles.subtitle}>
+        {selectedDeck?.subtitle ?? 'Shuffling cards...'}
+      </Text>
     </View>
   );
 }

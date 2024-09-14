@@ -5,28 +5,20 @@ import { Colors } from '@/constants/Colors';
 import { View, StyleSheet } from 'react-native';
 import { IconButton } from '../ui/IconButton';
 import Timer from './Timer';
+import { useDeckContext } from '@/providers/DeckContextProvider';
 
-interface Props {
-  handleFlip: () => void;
-  handleAutoplay: () => void;
-  handleShuffle: () => void;
-  moveToNextCard: () => void;
-  setSecondsInTimer: React.Dispatch<React.SetStateAction<number>>;
-  isShowingBack: boolean;
-  isOnAutoplay: boolean;
-  secondsInTimer: number;
-}
+export function DeckControls() {
+  const {
+    handleFlip,
+    handleAutoplay,
+    handleShuffle,
+    moveToNextCard,
+    isShowingBack,
+    isOnAutoplay,
+    secondsInTimer,
+    setSecondsInTimer
+  } = useDeckContext();
 
-export function DeckControls({
-  handleFlip,
-  handleAutoplay,
-  handleShuffle,
-  moveToNextCard,
-  isShowingBack,
-  isOnAutoplay,
-  secondsInTimer,
-  setSecondsInTimer
-}: Props) {
   return (
     <View style={styles.container}>
       <View>

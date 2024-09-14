@@ -3,7 +3,7 @@
  *
  * @param array the array to return a shuffled copy of
  */
-export function shuffleArray<T>(array: T[]): T[] {
+export function shuffleArray<T>(array: T[]) {
   const newArray = array.slice(0);
 
   for (let i = newArray.length - 1; i >= 0; i--) {

@@ -8,28 +8,23 @@ import Animated, {
 } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
 import { Colors } from '@/constants/Colors';
-import type { Card } from '@/types/Card';
 import { ProgressBar } from './ProgressBar';
+import { useDeckContext } from '@/providers/DeckContextProvider';
+import type { Card } from '@/types/Card';
 
 const screenWidth = Dimensions.get('window').width;
 const cardWidth = screenWidth - 64;
 
-interface Props {
-  cards: Card[];
-  currentCardIndex: number;
-  isShowingBack: boolean;
-  handleFlip: () => void;
-  setCurrentCardIndex: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export function DeckCardArea({
-  cards,
-  currentCardIndex,
-  isShowingBack,
-  handleFlip,
-  setCurrentCardIndex
-}: Props) {
+export function DeckCardArea() {
   const flip = useSharedValue(0);
+  const {
+    selectedDeck,
+    currentCardIndex,
+    isShowingBack,
+    handleFlip,
+    setCurrentCardIndex
+  } = useDeckContext();
+  const cards = selectedDeck?.cards || [];
 
   useEffect(() => {
     flip.value = withTiming(isShowingBack ? 1 : 0, { duration: 500 });
