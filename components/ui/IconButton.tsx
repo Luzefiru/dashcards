@@ -4,7 +4,7 @@ import {
   Pressable,
   PressableProps,
   StyleSheet,
-  ViewStyle,
+  ViewStyle
 } from 'react-native';
 
 interface IconButtonProps extends PressableProps {
@@ -25,13 +25,13 @@ export function IconButton({
     Animated.parallel([
       Animated.spring(scaleValue, {
         toValue: 0.9,
-        useNativeDriver: true,
+        useNativeDriver: true
       }),
       Animated.timing(opacityValue, {
         toValue: 0.8,
         duration: 150,
-        useNativeDriver: true,
-      }),
+        useNativeDriver: true
+      })
     ]).start();
   };
 
@@ -40,13 +40,13 @@ export function IconButton({
       Animated.spring(scaleValue, {
         toValue: 1,
         friction: 3,
-        useNativeDriver: true,
+        useNativeDriver: true
       }),
       Animated.timing(opacityValue, {
         toValue: 1,
         duration: 150,
-        useNativeDriver: true,
-      }),
+        useNativeDriver: true
+      })
     ]).start();
   };
 
@@ -61,7 +61,10 @@ export function IconButton({
         style={[
           styles.button,
           style,
-          { transform: [{ scale: scaleValue }], opacity: opacityValue },
+          {
+            transform: [{ scale: scaleValue }],
+            opacity: opacityValue
+          }
         ]}
       >
         {children}
@@ -75,6 +78,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 999,
-    elevation: 1,
-  },
+    elevation: 1
+  }
 });

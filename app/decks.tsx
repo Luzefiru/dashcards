@@ -11,6 +11,6 @@ export default function Credits() {
 const styles = {
   container: {
     paddingVertical: 16,
-    paddingHorizontal: 32,
-  },
+    paddingHorizontal: 32
+  }
 };

@@ -19,17 +19,17 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.primary,
     paddingBottom: 48,
-    paddingTop: 16,
+    paddingTop: 16
   },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: Colors.textPrimary,
+    color: Colors.textPrimary
   },
   subtitle: {
     fontSize: 16,
     textAlign: 'center',
-    color: Colors.textPrimary,
-  },
+    color: Colors.textPrimary
+  }
 });

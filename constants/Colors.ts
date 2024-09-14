@@ -17,5 +17,5 @@ export const Colors: Theme = {
   textPrimary: '#FFFFFF',
   textBackground: '#000000',
   textForeground: '#000000',
-  textMutedForeground: '#7B7980',
+  textMutedForeground: '#7B7980'
 };
