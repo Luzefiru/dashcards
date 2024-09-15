@@ -16,7 +16,19 @@
   <a href="https://github.com/Luzefiru/dashcards/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Luzefiru/dashcards?color=2b9348" alt="License Badge"/></a>
 </h5>
 
-## Get started
+<h6 align="center">
+  <a href="https://github.com/Luzefiru/dashcards/releases"><img height=80 alt="Get it on GitHub" src="https://raw.githubusercontent.com/flocke/andOTP/master/assets/badges/get-it-on-github.png" /></a>
+</h6>
+
+## Screens
+
+![Screens](./assets/screens.jpg)
+
+## Video Demo (YouTube)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/iSQYONABlpA/0.jpg)](https://www.youtube.com/watch?v=iSQYONABlpA)
+
+## Development
 
 1. Install dependencies
 
@@ -39,13 +51,6 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Design Mockup
+## License
 
-![App Mockup Design](./assets/design.png)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+[GNU General Public License v3.0](https://github.com/Luzefiru/dashcards/blob/main/LICENSE.md)
